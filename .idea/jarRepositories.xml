@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteRepositoriesConfiguration">
+    <remote-repository>
+      <option name="id" value="snapshots" />
+      <option name="name" value="snapshots" />
+      <option name="url" value="https://nexus3.disney.com/nexus/content/repositories/DATG-Snapshot" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="disney-release-nexus" />
+      <option name="name" value="Disney Release Nexus" />
+      <option name="url" value="https://nexus3.disney.com/nexus/content/repositories/DATG-Release" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="espn-ping-gitlab-maven" />
+      <option name="name" value="ESPN Ping" />
+      <option name="url" value="https://gitlab.disney.com/api/v4/projects/26129/packages/maven" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="disney-nexus-public" />
+      <option name="name" value="Disney Public Nexus" />
+      <option name="url" value="https://nexus.disney.com/nexus/content/groups/public" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="releases" />
+      <option name="name" value="releases" />
+      <option name="url" value="https://nexus3.disney.com/nexus/content/repositories/DATG-Release" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Maven Central repository" />
+      <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="gitlab-maven-ep-swe" />
+      <option name="name" value="DTCI Enterprise Software Engineering" />
+      <option name="url" value="https://gitlab.disney.com/api/v4/groups/dtci-ep-swe/-/packages/maven" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss.community" />
+      <option name="name" value="JBoss Community repository" />
+      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="gitlab-maven-dtap" />
+      <option name="name" value="Television Ad Platforms" />
+      <option name="url" value="https://gitlab.disney.com/api/v4/groups/television-ad-platforms/-/packages/maven" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="gitlab-maven" />
+      <option name="name" value="Traffic Common" />
+      <option name="url" value="https://gitlab.disney.com/api/v4/projects/26090/packages/maven" />
+    </remote-repository>
+  </component>
+</project>
