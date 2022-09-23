@@ -20,8 +20,8 @@ public class Main {
 
         var comments = getCommentsArray(FILE_URL);
 
-        var fixedThreadPool = Executors.newFixedThreadPool(3);
-        comments.forEach(comment -> fixedThreadPool.submit(new FormFiller(comment)));
+        var fixedThreadPool = Executors.newFixedThreadPool(2);
+        comments.forEach(comment -> fixedThreadPool.submit(new SurveyFiller(comment)));
         fixedThreadPool.shutdown();
     }
 
@@ -38,7 +38,7 @@ public class Main {
                 if (lastRow == null)
                     break;
                 var comment = lastRow.getCell(0).getStringCellValue();
-                if(!comment.isBlank()) {
+                if (!comment.isBlank()) {
                     log.info("Comment[{}] -> {}", i, comment);
                     comments.add(comment);
                     originSheet.removeRow(lastRow);

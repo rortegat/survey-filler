@@ -9,12 +9,12 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 
-public class FormFiller implements Runnable {
+public class SurveyFiller implements Runnable {
 
-    private static final Logger log = LoggerFactory.getLogger(FormFiller.class);
+    private static final Logger log = LoggerFactory.getLogger(SurveyFiller.class);
     private final String comment;
 
-    public FormFiller(String comment) {
+    public SurveyFiller(String comment) {
         this.comment = comment;
     }
 
@@ -93,14 +93,13 @@ public class FormFiller implements Runnable {
 
     private void section1(WebDriver driver) {
         var start = Instant.now();
-        sleep(1500);
+        sleep(2000);
 
         //how much would you recommend us?
         driver.findElement(By.id("onf_q_alsea_ltr_scale11_10")).click();
         //Why are you giving us this note?
         driver.findElement(By.id("spl_q_alsea_ltr_razones_comment")).sendKeys(comment);
         //Submit
-        sleep(Duration.ofSeconds(1).toMillis());
         driver.findElement(By.id("buttonBegin")).submit();
 
         log.info("SECTION 1 -> {}s", Duration.between(start, Instant.now()).toSeconds());
@@ -108,12 +107,11 @@ public class FormFiller implements Runnable {
 
     private void section2(WebDriver driver) {
         var start = Instant.now();
-        sleep(1500);
+        sleep(2000);
 
         //Do you have ticket?
         driver.findElement(By.id("onf_q_alsea_ticket_yn_2")).click();
         //Submit
-        sleep(Duration.ofSeconds(1).toMillis());
         driver.findElement(By.id("buttonNext")).submit();
 
         log.info("SECTION 2 -> {}s", Duration.between(start, Instant.now()).toSeconds());
@@ -121,7 +119,7 @@ public class FormFiller implements Runnable {
 
     private void section3(WebDriver driver) {
         var start = Instant.now();
-        sleep(1500);
+        sleep(2000);
 
         //Select State
         for (var state : openAndGetNextDropDownList(driver))
@@ -138,7 +136,6 @@ public class FormFiller implements Runnable {
         //Where was my service
         driver.findElement(By.id("onf_q_alsea_tipo_de_servicio_enum_0")).click();
         //Submit
-        sleep(Duration.ofSeconds(1).toMillis());
         driver.findElement(By.id("buttonNext")).submit();
 
         log.info("SECTION 3 -> {}s", Duration.between(start, Instant.now()).toSeconds());
@@ -146,7 +143,7 @@ public class FormFiller implements Runnable {
 
     private void section4(WebDriver driver) {
         var start = Instant.now();
-        sleep(1500);
+        sleep(2000);
 
         //5 stars
         driver.findElement(By.id("onf_q_alsea_osat_gral_enum_4")).click();
@@ -155,7 +152,6 @@ public class FormFiller implements Runnable {
         //Incidents in my visit
         driver.findElement(By.id("onf_q_alsea_incidente_yn_2")).click();
         //Submit
-        sleep(Duration.ofSeconds(1).toMillis());
         driver.findElement(By.id("buttonNext")).submit();
 
 
@@ -164,12 +160,11 @@ public class FormFiller implements Runnable {
 
     private void section5(WebDriver driver) {
         var start = Instant.now();
-        sleep(1500);
+        sleep(2000);
 
         //More details
         driver.findElement(By.id("onf_q_alsea_flex_yn_1")).click();
         //Submit
-        sleep(Duration.ofSeconds(1).toMillis());
         driver.findElement(By.id("buttonNext")).submit();
 
         log.info("SECTION 5 -> {}s", Duration.between(start, Instant.now()).toSeconds());
@@ -202,7 +197,7 @@ public class FormFiller implements Runnable {
 
     private void section7(WebDriver driver) {
         var start = Instant.now();
-        sleep(2000);
+        sleep(3000);
 
         //Restroom clean
         driver.findElement(By.id("onf_q_alsea_inst_banos_10")).click();
@@ -215,7 +210,6 @@ public class FormFiller implements Runnable {
         //Manager visit
         driver.findElement(By.id("onf_q_alsea_visita_gerente_yn_1")).click();
         //Submit
-        sleep(Duration.ofSeconds(1).toMillis());
         driver.findElement(By.id("buttonFinish")).submit();
 
         log.info("SECTION 7 -> {}s", Duration.between(start, Instant.now()).toSeconds());
