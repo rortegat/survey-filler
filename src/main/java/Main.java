@@ -13,14 +13,14 @@ public class Main {
 
     private static final Logger log = LoggerFactory.getLogger(Main.class);
     private static final String FILE_URL = "src/main/resources/comentarios.xlsx";
-    private static final int SURVEYS = 5;
+    private static final int SURVEYS = 10;
 
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 
         var comments = getCommentsArray(FILE_URL);
 
-        var fixedThreadPool = Executors.newFixedThreadPool(2);
+        var fixedThreadPool = Executors.newFixedThreadPool(5);
         comments.forEach(comment -> fixedThreadPool.submit(new SurveyFiller(comment)));
         fixedThreadPool.shutdown();
     }
@@ -42,7 +42,8 @@ public class Main {
                     log.info("Comment[{}] -> {}", i, comment);
                     comments.add(comment);
                     originSheet.removeRow(lastRow);
-                    targetSheet.shiftRows(0, targetSheet.getLastRowNum(), 1, true, true);
+                    if (targetSheet.getRow(targetSheet.getLastRowNum()) != null)
+                        targetSheet.shiftRows(0, targetSheet.getLastRowNum(), 1, true, true);
                     targetSheet.createRow(0).createCell(0).setCellValue(comment);
                 }
             }

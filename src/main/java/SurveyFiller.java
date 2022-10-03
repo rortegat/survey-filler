@@ -189,7 +189,6 @@ public class SurveyFiller implements Runnable {
         //Variety
         driver.findElement(By.id("onf_q_alsea_atributos_variedad_scale_10")).click();
         //Submit
-        sleep(Duration.ofSeconds(1).toMillis());
         driver.findElement(By.id("buttonNext")).submit();
 
         log.info("SECTION 6 -> {}s", Duration.between(start, Instant.now()).toSeconds());
