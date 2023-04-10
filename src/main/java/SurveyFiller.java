@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +26,9 @@ public class SurveyFiller implements Runnable {
 
     public void fillAndSend() {
         var failures = false;
-        var driver = new ChromeDriver();
+        var options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*","ignore-certificate-errors");
+        var driver = new ChromeDriver(options);
         driver.get("https://chilis.miexperiencia.com.mx/");
 
         var start = Instant.now();
@@ -85,8 +88,10 @@ public class SurveyFiller implements Runnable {
             log.error("Execution failed in the 7th section", e);
         }
 
-        if (!failures)
+        if (!failures) {
+            log.info("SURVEY COMPLETED SUCCESSFULLY");
             driver.close();
+        }
 
         log.info("ENDING FORM AUTOMATION -> {}s", Duration.between(start, Instant.now()).toSeconds());
     }
