@@ -12,24 +12,30 @@ import java.util.concurrent.Executors;
 public class Main {
 
     private static final Logger log = LoggerFactory.getLogger(Main.class);
-    private static final String FILE_URL = "src/main/resources/comentarios.xlsx";
+    private static final String COMMENTS_FILE_URL = "src/main/resources/comentarios.xlsx";
+    private static final String CHROMEDRIVER_FILE_URL = "src/main/resources/chromedriver.exe";
     private static final int SURVEYS = 10;
+    private static final int USERS = 5;
 
     public static void main(String[] args) {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_FILE_URL);
 
-        var comments = getCommentsArray(FILE_URL);
+        //Getting required comments
+        var comments = getCommentsArray();
 
-        var fixedThreadPool = Executors.newFixedThreadPool(5);
+        //Number of users filling surveys at the time
+        var fixedThreadPool = Executors.newFixedThreadPool(USERS);
+        //Running simulation
         comments.forEach(comment -> fixedThreadPool.submit(new SurveyFiller(comment)));
+        //Waiting for threads task completion to free up memory
         fixedThreadPool.shutdown();
     }
 
-    public static List<String> getCommentsArray(String fileUrl) {
+    public static List<String> getCommentsArray() {
         var comments = new ArrayList<String>();
-        try (var inputStream = new FileInputStream(fileUrl);
-             var workbook = new XSSFWorkbook(inputStream);
-             var outputStream = new FileOutputStream(FILE_URL)) {
+        try (var inputStream = new FileInputStream(COMMENTS_FILE_URL);
+             var outputStream = new FileOutputStream(COMMENTS_FILE_URL);
+             var workbook = new XSSFWorkbook(inputStream)) {
             var originSheet = workbook.getSheetAt(0);
             var targetSheet = workbook.getSheetAt(1);
             log.info("BEFORE -> Origin: {} - Target: {}", originSheet.getPhysicalNumberOfRows(), targetSheet.getPhysicalNumberOfRows());
